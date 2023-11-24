@@ -1,0 +1,172 @@
+<div class="d-flex">
+  <div class="game-container">
+    <div class="d-flex justify-content-between"
+      [ngStyle]="{'width' : game.gameVariables.boardWidth}">
+      <p *ngIf="game.player2.hasTurn">Hand: {{ game.gameVariables.seedsToSow }}</p>
+      <p *ngIf="!game.player2.hasTurn && !game.gameVariables.gameOver">Hand: 0</p>
+      <p *ngIf="game.gameVariables.gameOver">
+        Player 2 {{ game.gameVariables.winner == game.player2 ? "wins!" : "loses!" }}
+      </p>
+      <p>Total seeds: {{ game.player2.seedsHeld }}</p>
+    </div>
+    <div *ngIf="game.player2.hasTurn">
+      <div>
+        <button
+          *ngFor="let pit of backRowPlayer2.pits"
+          class="btn btn-success btn-pit"
+          [ngClass]="{'btn-hover-green' : pit.highlighted}"
+          (click)="playerPlay(pit, backRowPlayer2)"
+        >
+          {{ pit.seeds }}
+        </button>
+        <button
+          *ngIf="game.player2.computer"
+          class="btn btn-success btn-lg btn-computer"
+          (click)="computerPlay(game.player2)"
+        >
+          Play computer turn
+        </button>
+      </div>
+      <div>
+        <button
+          *ngFor="let pit of frontRowPlayer2.pits.slice().reverse()"
+          class="btn btn-success btn-pit"
+          [ngClass]="{'btn-hover-green' : pit.highlighted}"
+          (click)="playerPlay(pit, frontRowPlayer2)"
+        >
+          {{ pit.seeds }}
+        </button>
+      </div>
+    </div>
+    <div *ngIf="!game.player2.hasTurn">
+      <div>
+        <button
+          *ngFor="let pit of backRowPlayer2.pits"
+          class="btn btn-success btn-pit"
+          [ngClass]="{'btn-hover-green' : pit.highlighted}"
+          disabled
+        >
+          {{ pit.seeds }}
+        </button>
+        <button
+          *ngIf="game.player2.computer"
+          class="btn btn-success btn-lg btn-computer"
+          disabled
+        >
+          Play computer turn
+        </button>
+      </div>
+      <div>
+        <button
+          *ngFor="let pit of frontRowPlayer2.pits.slice().reverse()"
+          [ngClass]="{'btn-hover-green' : pit.highlighted}"
+          class="btn btn-success btn-pit"
+          disabled
+        >
+          {{ pit.seeds }}
+        </button>
+      </div>
+    </div>
+    <div *ngIf="game.player1.hasTurn">
+      <div>
+        <button
+          *ngFor="let pit of frontRowPlayer1.pits"
+          class="btn btn-warning btn-pit"
+          [ngClass]="{'btn-hover-yellow' : pit.highlighted}"
+          (click)="playerPlay(pit, frontRowPlayer1)"
+        >
+          {{ pit.seeds }}
+        </button>
+      </div>
+      <div>
+        <button
+          *ngFor="let pit of backRowPlayer1.pits.slice().reverse()"
+          class="btn btn-warning btn-pit"
+          [ngClass]="{'btn-hover-yellow' : pit.highlighted}"
+          (click)="playerPlay(pit, backRowPlayer1)"
+        >
+          {{ pit.seeds }}
+        </button>
+        <button
+          *ngIf="game.player1.computer"
+          class="btn btn-warning btn-lg btn-computer"
+          (click)="computerPlay(game.player1)"
+        >
+          Play computer turn
+        </button>
+      </div>
+    </div>
+    <div *ngIf="!game.player1.hasTurn">
+      <div>
+        <button
+          *ngFor="let pit of frontRowPlayer1.pits"
+          class="btn btn-warning btn-pit"
+          [ngClass]="{'btn-hover-yellow' : pit.highlighted}"
+          disabled
+        >
+          {{ pit.seeds }}
+        </button>
+      </div>
+      <div>
+        <button
+          *ngFor="let pit of backRowPlayer1.pits.slice().reverse()"
+          class="btn btn-warning btn-pit"
+          [ngClass]="{'btn-hover-yellow' : pit.highlighted}"
+          disabled
+        >
+          {{ pit.seeds }}
+        </button>
+        <button
+          *ngIf="game.player1.computer"
+          class="btn btn-warning btn-lg btn-computer"
+          disabled
+        >
+          Play computer turn
+        </button>
+      </div>
+    </div>
+    <div class="d-flex justify-content-between mt-3"
+      [ngStyle]="{'width' : game.gameVariables.boardWidth}">
+      <p *ngIf="game.player1.hasTurn">Hand: {{ game.gameVariables.seedsToSow }}</p>
+      <p *ngIf="!game.player1.hasTurn && !game.gameVariables.gameOver">Hand: 0</p>
+      <p *ngIf="game.gameVariables.gameOver">
+        Player 1 {{ game.gameVariables.winner == game.player1 ? "wins!" : "loses!" }}
+      </p>
+      <p>Total seeds: {{ game.player1.seedsHeld }}</p>
+    </div>
+    <div class="d-flex justify-content-between mb-3"
+      [ngStyle]="{'width' : game.gameVariables.boardWidth}">
+      <button 
+        class="btn btn-sm btn-warning btn-settings"
+        (click)="newGame()">
+        New game
+      </button>
+      <button
+        class="btn btn-sm btn-warning btn-settings"
+        (click)="openGameSettingsModal()">
+        Settings
+      </button>
+    </div>
+    <button 
+        class="btn btn-sm btn-warning btn-settings"
+        (click)="openGameSimulationModal()">
+        Run simulation
+      </button>
+  </div>
+  <div class="game-container ms-0">
+    <p>Game log</p>
+    <div *ngFor="let play of game.gameVariables.playHistory.reverse()">
+      <p>
+        <span>Turn: {{play.turn}}, </span>
+        <span>player: {{play.player.id + 1}}, </span>
+        <span>pit: {{play.pickedGameRow.frontRow ? play.pickedPit.id + 1 : play.pickedPit.id + 1 + play.pickedGameRow.pits.length}}, </span>
+        <span>score: {{play.scoreTurnStart}} + </span>
+        <span>{{play.scoreTurnEnd - play.scoreTurnStart}} = </span>
+        <span>{{play.scoreTurnEnd}}</span>
+      </p>
+    </div>
+  </div>
+</div>
+
+
+

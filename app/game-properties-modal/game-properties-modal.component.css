@@ -1,0 +1,33 @@
+.btn {
+    width: 6rem;
+}
+
+.btn-no-outline {
+    border: 0;
+}
+
+.propertiesWindow {
+    margin: 1rem;
+}
+
+.settings-label {
+    width: 8rem;
+}
+
+/* Bootstrap colors */
+.custom-range::-webkit-slider-thumb {
+    background: var(--bs-warning);
+}
+
+.custom-range::-moz-range-thumb {
+    background: var(--bs-warning);
+}
+
+.custom-range::-ms-thumb {
+    background: var(--bs-warning);
+}
+
+.form-check-input:checked {
+    background-color: var(--bs-warning);
+    border-color: var(--bs-warning);
+}

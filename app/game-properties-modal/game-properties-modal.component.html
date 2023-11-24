@@ -1,0 +1,69 @@
+<div class="propertiesWindow">
+    <h5 class="mb-3">Settings</h5>
+    <form name="gameSettings">
+        <div class="form-check">
+            <input 
+                class="form-check-input" 
+                type="checkbox"
+                name="player1IsComputer"
+                id="player1IsComputer"
+                [(ngModel)]="gameSettings.player1IsComputer">
+            <label class="form-check-label" for="player1IsComputer">
+                Player 1: Computer
+            </label>
+        </div>
+        <div class="form-check">
+            <input 
+                class="form-check-input" 
+                type="checkbox"
+                name="player2IsComputer"
+                id="player2IsComputer"
+                [(ngModel)]="gameSettings.player2IsComputer">
+            <label class="form-check-label" for="player2IsComputer">
+                Player 2: Computer
+            </label>
+        </div>
+        <div class="d-flex">
+            <label class="settings-label">Pits: {{gameSettings.pitAmount}}</label>
+            <input 
+                type="range" 
+                class="form-range custom-range" 
+                min="6" 
+                max="16"
+                name="pitAmount"
+                id="pitAmount" 
+                value="pitAmount"
+                [(ngModel)]="gameSettings.pitAmount">
+        </div>
+        <div class="d-flex">
+            <label class="settings-label">Seeds: {{gameSettings.seedsPerPit}}</label>
+            <input 
+                type="range" 
+                class="form-range custom-range" 
+                min="2" 
+                max="10"
+                name="seedsPerPit"
+                id="seedsPerPit" 
+                value="seedsPerPit"
+                [(ngModel)]="gameSettings.seedsPerPit">
+        </div>
+        <div class="d-flex">
+            <label class="settings-label">Delay: {{gameSettings.delay}}</label>
+            <input 
+                type="range"
+                color="warning"
+                class="form-range custom-range" 
+                min="0" 
+                max="500"
+                name="delay"
+                id="delay" 
+                value="delay"
+                [(ngModel)]="gameSettings.delay">
+        </div>
+        <div class="d-flex justify-content-between mt-3">
+            <button class="btn btn-outline-warning btn-sm btn-no-outline" (click)="closeModal('Cancel')">Cancel</button>
+            <button class="btn btn-warning btn-sm" (click)="submit()">Save</button>
+        </div>
+    </form>
+</div>
+

@@ -1,0 +1,30 @@
+.btn-computer {
+    margin-left: 3rem;
+    border: 1px solid black;
+}
+
+.btn-hover-green {
+    background-color: #1ab96f;
+}
+
+.btn-hover-yellow {
+    background-color: rgb(253, 247, 148);
+}
+
+.btn-pit {
+    min-width: 3rem;
+    max-width: 3rem;
+    min-height: 3rem;
+    max-height: 3rem;
+    font-size: larger;
+    border: 1px solid black;
+}
+
+.btn-settings {
+    min-width: 9rem;
+    border: 1px solid black;
+}
+
+.game-container {
+    margin: 3rem;
+}
